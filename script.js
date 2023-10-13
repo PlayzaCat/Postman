@@ -106,6 +106,10 @@ registerButton.addEventListener('click', () => {  // блок регистрац
     registrationBlock.append(registrationBlockPassword)
     registrationBlock.append(registrationBlockButton)
 
+    document.getElementById('1').value = '';
+    document.getElementById('3').value = '';
+    document.getElementById('2').value = ''
+
 })
 
 loginButton.addEventListener('click', () => { // блок авторизации
@@ -115,14 +119,18 @@ loginButton.addEventListener('click', () => { // блок авторизации
     authorizationBlock.append(registrationBlockEmail)
     authorizationBlock.append(registrationBlockPassword)
     authorizationBlock.append(authorizationBlockButton)
+
+    document.getElementById('1').value = '';
+    document.getElementById('3').value = '';
+    document.getElementById('2').value = ''
 })
 
 
 matrixBlockButton.addEventListener('click', () => { // блок выхода
     buttons.style.display = 'block'
     matrixBlock.style.display = 'none'
-    localStorage.setItem('email', '')
-        localStorage.setItem('password', '')
+    localStorage.clear()
+    
     // matrixBlock.append(matrixBlockButton)
 
 })
@@ -246,6 +254,7 @@ async function sendOldData(oldUser) {
     if (response.ok) {
 
         authorizationComplete(`Добро пожаловать в матрицу, Нео`);
+        buttons.style.display = 'none'
     } else if (otvet.errors["email or password"] == "is invalid" ) {
         console.log(`work`)
         authorizationError(`Некорректные данные`);
