@@ -150,7 +150,7 @@ authorizationBlockButton.addEventListener("click", function() {   /// собир
     localStorage.setItem('password', passwordForSend)
 
     if (emailForSend === "" || passwordForSend === "" ) {   /// посылаем если халтурят
-        registrationError(`"Пожалуйста, заполните все поля"`);
+        authorizationError(`"Пожалуйста, заполните все поля"`);
     } else {
         oldUser.user.email = emailForSend
         oldUser.user.password = passwordForSend
