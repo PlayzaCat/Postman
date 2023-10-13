@@ -25,7 +25,7 @@ registrationBlockPassword.setAttribute('type', 'text')
 registrationBlockPassword.setAttribute('id', '2')
 registrationBlockPassword.setAttribute('name', 'Password')
 registrationBlockPassword.setAttribute('placeholder', 'Password')
-// let passwordForSend = document.querySelector('registrationBlockPassword').value;
+
 
 const registrationBlockEmail = document.createElement("input");  // создаем див
 registrationBlockEmail.classList.add("reginput"); 
@@ -33,7 +33,7 @@ registrationBlockEmail.setAttribute('type', 'text')
 registrationBlockEmail.setAttribute('id', '3')
 registrationBlockEmail.setAttribute('name', 'Email')
 registrationBlockEmail.setAttribute('placeholder', 'Email')
-// let emailForSend = document.querySelector('registrationBlockEmail').value;
+
 
 //кнопка отправки регистрации
 const registrationBlockButton = document.createElement("button"); 
@@ -50,6 +50,10 @@ matrixBlockButton.innerText = 'Покинуть матрицу'
 // всплывающее окно
 const alertSystem = document.createElement("div"); 
 alertSystem.classList.add("alertSystem");
+
+
+// поля ввода
+
 
 
 // тут новый юзер для отправки
@@ -105,32 +109,34 @@ registerButton.addEventListener('click', () => {  // блок регистрац
     registrationBlock.append(registrationBlockEmail)
     registrationBlock.append(registrationBlockPassword)
     registrationBlock.append(registrationBlockButton)
-
-    document.getElementById('1').value = '';
-    document.getElementById('3').value = '';
-    document.getElementById('2').value = ''
-
+    clearInput()
 })
 
 loginButton.addEventListener('click', () => { // блок авторизации
     registrationBlock.style.display = 'none'
     authorizationBlock.style.display = 'block'
-
+    
     authorizationBlock.append(registrationBlockEmail)
     authorizationBlock.append(registrationBlockPassword)
     authorizationBlock.append(authorizationBlockButton)
-
-    document.getElementById('1').value = '';
-    document.getElementById('3').value = '';
-    document.getElementById('2').value = ''
+    clearInput()
+    
 })
+
+
+
+function clearInput( ) {
+    registrationBlockEmail.value = '';
+    registrationBlockPassword.value = '';
+    registrationBlockNickname.value = '';
+}
 
 
 matrixBlockButton.addEventListener('click', () => { // блок выхода
     buttons.style.display = 'block'
     matrixBlock.style.display = 'none'
     localStorage.clear()
-    
+    clearInput()
     // matrixBlock.append(matrixBlockButton)
 
 })
@@ -261,7 +267,6 @@ async function sendOldData(oldUser) {
     } 
 } catch (error) {
     console.log("Error", error)
-    authorizationError(`Регистрация прошла неуспешно`);
 }
 }
 
